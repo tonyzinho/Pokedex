@@ -221,3 +221,60 @@ button:hover{
         height:180px;
     }
 }
+
+.stats{
+
+    margin-top:25px;
+
+    text-align:left;
+}
+
+.stat{
+
+    margin-bottom:15px;
+}
+
+.stat span{
+
+    display:block;
+
+    margin-bottom:6px;
+
+    color:white;
+}
+
+.bar{
+
+    width:100%;
+
+    height:14px;
+
+    background:rgba(255,255,255,0.08);
+
+    border-radius:999px;
+
+    overflow:hidden;
+}
+
+.bar div{
+
+    height:100%;
+
+    width:0%;
+
+    border-radius:999px;
+
+    transition:1s;
+}
+
+#hpBar{
+    background:#22c55e;
+}
+
+#attackBar{
+    background:#ef4444;
+}
+
+#defenseBar{
+    background:#3b82f6;
+}
