@@ -23,7 +23,8 @@ async function buscarPokemon(){
         pokemonAtual = dados
 
         mostrarPokemon()
-
+       
+        buscarEvolucao(dados)   
     }
 
     catch{
@@ -168,4 +169,77 @@ function trocarCor(tipo){
     `radial-gradient(circle at top,
     ${cor},
     #111827 70%)`
+}
+
+document
+.getElementById("pokemonInput")
+.addEventListener("keypress", function(event){
+
+    if(event.key === "Enter"){
+
+        buscarPokemon()
+    }
+})
+
+let favoritos = []
+
+function favoritarPokemon(){
+
+    if(!pokemonAtual){
+
+        return
+    }
+
+    favoritos.push(
+        pokemonAtual.name
+    )
+
+    alert(
+        `${pokemonAtual.name} foi favoritado!`
+    )
+
+    console.log(favoritos)
+}
+
+async function buscarEvolucao(dados){
+
+    const speciesResponse =
+    await fetch(
+        dados.species.url
+    )
+
+    const speciesData =
+    await speciesResponse.json()
+
+    const evolutionResponse =
+    await fetch(
+        speciesData.evolution_chain.url
+    )
+
+    const evolutionData =
+    await evolutionResponse.json()
+
+    let evolucao =
+
+        evolutionData.chain.species.name
+
+    if(
+        evolutionData.chain.evolves_to.length > 0
+    ){
+
+        evolucao +=
+        " → " +
+
+        evolutionData
+        .chain
+        .evolves_to[0]
+        .species
+        .name
+    }
+
+    document.getElementById(
+        "evolutionBox"
+    ).innerText =
+
+    `Evolução: ${evolucao}`
 }
