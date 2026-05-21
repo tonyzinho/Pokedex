@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
     <title>Pokédex</title>
 
     <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 
@@ -14,13 +19,16 @@
         <h1>Pokédex</h1>
 
         <input
-            type="text"
-            id="pokemonInput"
-            placeholder="Digite um Pokémon"
-        >
+        type="text"
+        id="pokemonInput"
+        placeholder="Digite um Pokémon">
 
         <button onclick="buscarPokemon()">
             Buscar
+        </button>
+
+        <button onclick="toggleShiny()">
+            ✨ Shiny
         </button>
 
         <div class="pokemon-box">
@@ -33,9 +41,39 @@
 
             <p id="pokemonType"></p>
 
+            <div class="stats">
+
+                <div class="stat">
+                    <span>HP</span>
+
+                    <div class="bar">
+                        <div id="hpBar"></div>
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <span>Attack</span>
+
+                    <div class="bar">
+                        <div id="attackBar"></div>
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <span>Defense</span>
+
+                    <div class="bar">
+                        <div id="defenseBar"></div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
 
     </div>
+
+    <audio id="pokemonCry"></audio>
 
     <script src="script.js"></script>
 
