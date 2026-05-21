@@ -116,59 +116,59 @@ function trocarCor(tipo){
     const body =
     document.body
 
-    const cores = {
+    const efeitos = {
 
         fire:
-        "#ff6b35",
+        `
+        radial-gradient(circle at top,
+        #ff6b35,
+        #111827 70%)
+        `,
 
         water:
-        "#3b82f6",
+        `
+        radial-gradient(circle at top,
+        #3b82f6,
+        #111827 70%)
+        `,
 
         grass:
-        "#22c55e",
+        `
+        radial-gradient(circle at top,
+        #22c55e,
+        #111827 70%)
+        `,
 
         electric:
-        "#facc15",
-
-        psychic:
-        "#ec4899",
-
-        ice:
-        "#67e8f9",
-
-        dragon:
-        "#7c3aed",
-
-        dark:
-        "#111827",
-
-        fairy:
-        "#f9a8d4",
-
-        fighting:
-        "#dc2626",
+        `
+        radial-gradient(circle at top,
+        #facc15,
+        #111827 70%)
+        `,
 
         ghost:
-        "#7e22ce",
+        `
+        radial-gradient(circle at top,
+        #7e22ce,
+        #111827 70%)
+        `,
 
-        poison:
-        "#9333ea",
-
-        rock:
-        "#a16207",
-
-        ground:
-        "#92400e"
-
+        psychic:
+        `
+        radial-gradient(circle at top,
+        #ec4899,
+        #111827 70%)
+        `
     }
 
-    const cor =
-    cores[tipo] || "#3b4cca"
-
     body.style.background =
-    `radial-gradient(circle at top,
-    ${cor},
-    #111827 70%)`
+    efeitos[tipo] ||
+
+    `
+    radial-gradient(circle at top,
+    #3b4cca,
+    #111827 70%)
+    `
 }
 
 document
@@ -242,4 +242,70 @@ async function buscarEvolucao(dados){
     ).innerText =
 
     `Evolução: ${evolucao}`
+}
+
+let capturados = []
+
+function capturarPokemon(){
+
+    if(!pokemonAtual){
+
+        return
+    }
+
+    const chance =
+    Math.random()
+
+    if(chance > 0.5){
+
+        capturados.push(
+            pokemonAtual.name
+        )
+
+        alert(
+            `${pokemonAtual.name} foi capturado!`
+        )
+
+    }else{
+
+        alert(
+            `${pokemonAtual.name} escapou!`
+        )
+    }
+
+    console.log(capturados)
+}
+
+async function batalharPokemon(){
+
+    const aleatorio =
+
+    Math.floor(Math.random() * 151) + 1
+
+    const resposta =
+    await fetch(
+        `https://pokeapi.co/api/v2/pokemon/${aleatorio}`
+    )
+
+    const inimigo =
+    await resposta.json()
+
+    const ataquePlayer =
+    pokemonAtual.stats[1].base_stat
+
+    const ataqueInimigo =
+    inimigo.stats[1].base_stat
+
+    if(ataquePlayer > ataqueInimigo){
+
+        alert(
+            `${pokemonAtual.name} venceu ${inimigo.name}!`
+        )
+
+    }else{
+
+        alert(
+            `${pokemonAtual.name} perdeu para ${inimigo.name}!`
+        )
+    }
 }
